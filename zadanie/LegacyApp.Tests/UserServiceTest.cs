@@ -7,10 +7,10 @@ public class UserServiceTest
     {
         
         //Arrange
-        var UserService = new UserService();
+        var userService = new UserService();
         
         //Act
-        var result = UserService.AddUser(null, "Kowalski",
+        var result = userService.AddUser(null, "Kowalski",
             "kowalski@kowalski.pl", DateTime.Parse("2000-01-01"),
             1);
         
@@ -22,14 +22,14 @@ public class UserServiceTest
     }
     
     [Fact]
-    public void AddUsers_ThrowsArgumentExceptionClientDoesNotExists()
+    public void AddUsersThrowsArgumentExceptionClientDoesNotExists()
     {
         
         //Arrange
-        var UserService = new UserService();
+        var userService = new UserService();
         
         //Act
-        Action action = () => UserService.AddUser("Jan", "Kowalski",
+        Action action = () => userService.AddUser("Jan", "Kowalski",
             "kowalski@kowalski.pl", DateTime.Parse("2000-01-01"),
             100);
         
