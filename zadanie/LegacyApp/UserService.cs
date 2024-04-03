@@ -4,6 +4,21 @@ namespace LegacyApp
 {
     public class UserService
     {
+        private IUserCreditService _userCreditService;
+        private IClientRepository _clientRepository;
+
+        public UserService(IUserCreditService userCreditService, IClientRepository clientRepository)
+        {
+            _userCreditService = userCreditService;
+            _clientRepository = clientRepository;
+        }
+        
+        [Obsolete]
+        public UserService()
+        {
+            _userCreditService = new UserCreditService();
+            _clientRepository = new ClientRepository();
+        }
         public bool AddUser(string firstName, string lastName, string email, DateTime dateOfBirth, int clientId)
         {
             if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName))
