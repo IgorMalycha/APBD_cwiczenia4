@@ -34,7 +34,7 @@ namespace LegacyApp
             Thread.Sleep(randomWaitingTime);
 
             if (_database.ContainsKey(lastName))
-                return _database[lastName];
+                return _database[lastName] * 2;
 
             throw new ArgumentException($"Client {lastName} does not exist");
         }

@@ -40,8 +40,8 @@ namespace LegacyApp
                 return false;
             }
 
-            var clientRepository = new ClientRepository();
-            var client = clientRepository.GetById(clientId);
+            
+            var client = _clientRepository.GetById(clientId);
 
             var user = new User
             {
@@ -58,21 +58,17 @@ namespace LegacyApp
             }
             else if (client.Type == "ImportantClient")
             {
-                using (var userCreditService = new UserCreditService())
-                {
-                    int creditLimit = userCreditService.GetCreditLimit(user.LastName, user.DateOfBirth);
-                    creditLimit = creditLimit * 2;
-                    user.CreditLimit = creditLimit;
-                }
+                
+                user.CreditLimit = _userCreditService.GetCreditLimit(user.LastName, user.DateOfBirth);
+                    
+                
             }
             else
             {
                 user.HasCreditLimit = true;
-                using (var userCreditService = new UserCreditService())
-                {
-                    int creditLimit = userCreditService.GetCreditLimit(user.LastName, user.DateOfBirth);
-                    user.CreditLimit = creditLimit;
-                }
+                
+                user.CreditLimit = _userCreditService.GetCreditLimit(user.LastName, user.DateOfBirth);
+                
             }
 
             if (user.HasCreditLimit && user.CreditLimit < 500)
