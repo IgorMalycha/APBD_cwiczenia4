@@ -39,7 +39,6 @@ namespace LegacyApp
             {
                 return false;
             }
-
             
             var client = _clientRepository.GetById(clientId);
 
@@ -60,7 +59,6 @@ namespace LegacyApp
             {
                 
                 user.CreditLimit = _userCreditService.GetCreditLimit(user.LastName, user.DateOfBirth);
-                    
                 
             }
             else
@@ -68,7 +66,6 @@ namespace LegacyApp
                 user.HasCreditLimit = true;
                 
                 user.CreditLimit = _userCreditService.GetCreditLimit(user.LastName, user.DateOfBirth);
-                
             }
 
             if (user.HasCreditLimit && user.CreditLimit < 500)
